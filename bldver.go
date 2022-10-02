@@ -46,6 +46,40 @@ References:
 	https://initialcommit.com/blog/git-tag
 
 Output:
+	$ ./bldver
+	bldver version v0.0.10 started
+	bldver ended
+
+	$ ./bldver -v
+	bldver ver: v0.0.10 at: 2022-10-02_04:27:12AM githash: 36d2f5de81003116ceb92f3fa0fd9468a654e25c
+
+	Build Info:
+	go      go1.19.1
+	path    command-line-arguments
+	dep     github.com/mattn/go-colorable   v0.1.12 h1:jF+Du6AlPIjs2BiUiQlKOX0rt3SujHxPnksPKZbaA40=
+	dep     github.com/mattn/go-isatty      v0.0.14 h1:yVuAays6BHfxijgZPzw+3Zlu5yQgKGP2/hcQbHb7S9Y=
+	dep     github.com/rs/zerolog   v1.28.0 h1:MirSo27VyNi7RJYP3078AA1+Cyzd2GB66qy3aUHvsWY=
+	dep     golang.org/x/sys        v0.0.0-20210927094055-39ccf1dd6fa6      h1:foEbQz/B0Oz6YIqu/69kfXPYeFQAuuMYFkjaqXzl5Wo=
+	build   -compiler=gc
+	build   -ldflags="-X main.Ver=v0.0.10 -X main.Dat=2022-10-02_04:27:12AM -X main.Githash=36d2f5de81003116ceb92f3fa0fd9468a654e25c"
+	build   CGO_ENABLED=1
+	build   CGO_CFLAGS=
+	build   CGO_CPPFLAGS=
+	build   CGO_CXXFLAGS=
+	build   CGO_LDFLAGS=
+	build   GOARCH=amd64
+	build   GOOS=linux
+	build   GOAMD64=v1
+
+
+	Dependencies:
+			&debug.Module{Path:"github.com/mattn/go-colorable", Version:"v0.1.12", Sum:"h1:jF+Du6AlPIjs2BiUiQlKOX0rt3SujHxPnksPKZbaA40=", Replace:(*debug.Module)(nil)}
+			&debug.Module{Path:"github.com/mattn/go-isatty", Version:"v0.0.14", Sum:"h1:yVuAays6BHfxijgZPzw+3Zlu5yQgKGP2/hcQbHb7S9Y=", Replace:(*debug.Module)(nil)}
+			&debug.Module{Path:"github.com/rs/zerolog", Version:"v1.28.0", Sum:"h1:MirSo27VyNi7RJYP3078AA1+Cyzd2GB66qy3aUHvsWY=", Replace:(*debug.Module)(nil)}
+			&debug.Module{Path:"golang.org/x/sys", Version:"v0.0.0-20210927094055-39ccf1dd6fa6", Sum:"h1:foEbQz/B0Oz6YIqu/69kfXPYeFQAuuMYFkjaqXzl5Wo=", Replace:(*debug.Module)(nil)}
+
+	$ ./bldver -b
+	HEAD=`git rev-parse HEAD` go build -ldflags "-X main.Ver=`git describe --tags $HEAD` -X main.Dat=`date -u '+%Y-%m-%d_%I:%M:%S%p'` -X main.Githash=`git rev-parse HEAD`" bldver.go
 
 */
 
