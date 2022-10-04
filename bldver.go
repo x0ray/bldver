@@ -129,16 +129,22 @@ func init() {
 	flag.BoolVar(&showBld, "b", false, "Show build command for this program")
 }
 
-var (
+const (
 	// program name set by code developer at program creation time
 	Pgm = "bldver"
+)
 
+// These variables are visible to the linker as external symbols. These particular
+// variables values are replaced by the linker with values passed to the linker
+// using the -X main.<var>=<value> option. The linker options are passed by the
+// compiler from the -lflags "..." option.
+var (
 	// date of last build replaced by go build command (see above)
-	Dat = "2022-10-01_00:00:00AM"
+	Dat = "2022-09-28_00:00:00AM"
 
 	// version of program replaced by go build command from most
 	// recent git tag
-	Ver = "v0.0.10"
+	Ver = "v0.0.0"
 
 	// githash for latest revision of program replaced by go build
 	// command from git hash for HEAD
